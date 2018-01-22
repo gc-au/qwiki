@@ -24,10 +24,12 @@ class App extends Component {
         return this.setState({ random_article: data });
       });
   }
+
   handleEvent = event => {
     event.preventDefault();
     this.searchArticle();
   };
+
   searchArticle() {
     console.log(`Query: ${this.state.query}`);
     fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${this.state.query}`)
