@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      random_article: {},
+      random_article: null,
       query: ""
     };
     this.handleChange = this.handleChange.bind(this);
@@ -44,8 +44,9 @@ class App extends Component {
     fetch(`https://en.wikipedia.org/api/rest_v1/page/related/${title}`)
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        return this.setState({ random_article: data.pages[0] });
+        let article = data.pages[Math.floor(Math.random() * data.pages.length)];
+        article.title = article.normalizedtitle;
+        return this.setState({ random_article: article });
       });
   }
 
@@ -74,13 +75,13 @@ class App extends Component {
           </form>
         </header>
         {/* only render article if it exists */}
-        {article.thumbnail && (
+        {article && (
           <div>
             <div id="article">
               <h1>{article.title}</h1>
               <h2>{article.description}</h2>
               <div id="body">
-                <img src={article.thumbnail.source} alt={article.title} />
+                {article.thumbnail && <img src={article.thumbnail.source} alt={article.title} />}
                 <p>{article.extract}</p>
               </div>
             </div>
