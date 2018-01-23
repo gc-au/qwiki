@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   getRandom() {
-    console.log(`getRandom`);
     fetch(`https://en.wikipedia.org/api/rest_v1/page/random/summary`)
       .then(res => res.json())
       .then(data => {
@@ -31,7 +30,6 @@ class App extends Component {
   };
 
   searchArticle() {
-    console.log(`Query: ${this.state.query}`);
     fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${this.state.query}`)
       .then(res => res.json())
       .then(data => {
@@ -40,7 +38,6 @@ class App extends Component {
   }
 
   fetchRelated(title) {
-    console.log(title);
     fetch(`https://en.wikipedia.org/api/rest_v1/page/related/${title}`)
       .then(res => res.json())
       .then(data => {
@@ -51,7 +48,6 @@ class App extends Component {
   }
 
   handleChange(event) {
-    console.log("handleChange");
     this.setState({ query: event.target.value });
   }
 
