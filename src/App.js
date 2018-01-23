@@ -31,7 +31,7 @@ class App extends Component {
   };
 
   searchArticle() {
-    console.log(`Querddy: ${this.state.query}`);
+    console.log(`Query: ${this.state.query}`);
     fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${this.state.query}`)
       .then(res => res.json())
       .then(data => {
