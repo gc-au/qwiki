@@ -20,11 +20,11 @@ class App extends Component {
     fetch(`https://en.wikipedia.org/api/rest_v1/page/random/summary`)
       .then(res => res.json())
       .then(data => {
-        return this.setState({ random_article: data });
+        this.setState({ random_article: data });
       });
   }
 
-  handleEvent = event => {
+  handleSubmit = event => {
     event.preventDefault();
     this.searchArticle();
   };
@@ -65,12 +65,11 @@ class App extends Component {
             Random
           </button>
           <img src={logo} alt="Wikipedia Logo" />
-          <form onSubmit={this.handleEvent}>
+          <form onSubmit={this.handleSubmit}>
             <input type="text" value={this.state.query} onChange={this.handleChange} />
             <input type="submit" value="Search" />
           </form>
         </header>
-        {/* only render article if it exists */}
         {article && (
           <div>
             <div id="article">
