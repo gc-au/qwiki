@@ -1,0 +1,6 @@
+@import "uikit/uikit.min.css";
+
+img {
+    max-width: 300px;
+    height: 100%;
+}

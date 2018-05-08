@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import "./App.css";
-import logo from "./wikipedia_logo.svg";
+import "./styles/index.css";
+import "./styles/uikit/uikit.min.js";
+import "./styles/uikit/uikit-icons.min.js";
 
 class App extends Component {
     constructor(props) {
@@ -55,38 +56,39 @@ class App extends Component {
         const article = this.state.random_article;
 
         return (
-            <div>
-                <header className="center">
-                    <button
-                        onClick={() => {
-                            this.getRandom();
-                        }}>
-                        Random
-                    </button>
-                    <img src={logo} alt="Wikipedia Logo" />
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" value={this.state.query} onChange={this.handleChange} />
-                        <input type="submit" value="Search" />
-                    </form>
-                </header>
+            <div className="uk-container uk-padding uk-flex">
                 {article && (
-                    <div>
-                        <div id="article">
-                            <h1>{article.title}</h1>
-                            <h2>{article.description}</h2>
-                            <div id="body">
-                                {article.thumbnail && <img src={article.thumbnail.source} alt={article.title} />}
-                                <p>{article.extract}</p>
-                            </div>
-                        </div>
-                        <div id="tools">
-                            test
+                    <div className="uk-width-1-1">
+                        <h1 className="uk-heading-primary uk-heading-divider">{article.title}</h1>
+                        {article.thumbnail && <img src={article.thumbnail.source} className="uk-align-right" />}
+                        <h2>{article.description}</h2>
+                        <p>{article.extract}</p>
+                        <div className="uk-flex uk-flex-between">
                             <input
                                 type="button"
                                 onClick={() => window.open(`https://en.wikipedia.org/api/rest_v1/page/pdf/${article.title}`, "_blank")}
-                                value="Download Page as .PDF"
+                                value="Download as PDF"
+                                className="uk-button uk-button-default uk-width-medium"
                             />
-                            <input type="button" onClick={() => this.fetchRelated(article.title)} value="Show a related article" />
+                            <input
+                                className="uk-button uk-button-default uk-width-medium"
+                                type="button"
+                                onClick={() => this.fetchRelated(article.title)}
+                                value="Related article"
+                            />
+                        </div>
+                        <div className="uk-flex uk-flex-between uk-margin">
+                            <form onSubmit={this.handleSubmit} className="uk-search uk-search-default uk-width-medium">
+                                <button type="submit" href="" class="uk-search-icon-flip" data-uk-search-icon="" />
+                                <input className="uk-search-input" type="search" value={this.state.query} onChange={this.handleChange} />
+                            </form>
+                            <button
+                                onClick={() => {
+                                    this.getRandom();
+                                }}
+                                className="uk-button uk-button-primary uk-width-medium">
+                                Random
+                            </button>
                         </div>
                     </div>
                 )}
