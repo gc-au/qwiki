@@ -5,4 +5,4 @@
 * AJAX
 * UIKit
 
-[Demo](https://gc.github.io/qwiki/) / [Source](https://github.com/gc/qwiki/)
+[Demo](https://gc.github.io/qwiki/)
