@@ -2,7 +2,7 @@
     "name": "qwiki",
     "version": "0.1.0",
     "private": true,
-    "homepage": "https://gchippendale.github.io/qwiki",
+    "homepage": "https://gc.github.io/qwiki",
     "dependencies": {
         "gh-pages": "^1.1.0",
         "react": "^16.2.0",
